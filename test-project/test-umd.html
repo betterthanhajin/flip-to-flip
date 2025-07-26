@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMD 테스트</title>
+    <script src="https://unpkg.com/react@19/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@19/umd/react-dom.development.js"></script>
+    <script src="../dist/flip-count.umd.js"></script>
+</head>
+<body>
+    <h1>UMD 모듈 테스트</h1>
+    <div id="test-results"></div>
+
+    <script>
+        console.log('UMD 테스트:');
+        console.log('window.FlipCount:', typeof window.FlipCount);
+        console.log('FlipCount object:', window.FlipCount);
+        
+        const results = document.getElementById('test-results');
+        
+        if (window.FlipCount) {
+            if (window.FlipCount.FlipCount) {
+                console.log('✅ UMD 모듈이 정상적으로 로드되었습니다.');
+                results.innerHTML = `
+                    <p style="color: green;">✅ UMD 모듈이 정상적으로 로드되었습니다.</p>
+                    <p>FlipCount: ${typeof window.FlipCount.FlipCount}</p>
+                    <p>FlipCount function: ${typeof window.FlipCount.FlipCount === 'function'}</p>
+                `;
+            } else {
+                console.log('❌ FlipCount 컴포넌트를 찾을 수 없습니다.');
+                results.innerHTML = `
+                    <p style="color: red;">❌ FlipCount 컴포넌트를 찾을 수 없습니다.</p>
+                    <p>Available properties: ${Object.keys(window.FlipCount).join(', ')}</p>
+                `;
+            }
+        } else {
+            console.log('❌ UMD 모듈 로드에 실패했습니다.');
+            results.innerHTML = '<p style="color: red;">❌ UMD 모듈 로드에 실패했습니다.</p>';
+        }
+    </script>
+</body>
+</html>
