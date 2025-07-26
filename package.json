@@ -1,6 +1,6 @@
 {
   "name": "flip-to-flip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React component for animated flip counter",
   "main": "dist/flip-count.cjs.js",
   "module": "dist/flip-count.es.js",
